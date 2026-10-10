@@ -29,7 +29,7 @@ body::before {
   position:fixed;
   inset:-28px;
   z-index:-2;
-  background-image:var(--site-background,linear-gradient(135deg,#fff0f6,#f3d7e7));
+  background-image:url('./background.svg');
   background-size:cover;
   background-position:center;
   filter:blur(13px);
@@ -1377,10 +1377,7 @@ async function copyText(button){await copyFeedback(button,button.closest(".card"
 document.getElementById("copyAll").addEventListener("click",function(){const text=visibleCards().map(card=>card.querySelector("pre").textContent).join("\n\n");if(text)copyFeedback(this,text);});
 applyFilters();
 
-fetch('./OOC%20MMR%20prompt.html',{cache:'force-cache'})
- .then(response=>{if(!response.ok)throw new Error('background');return response.text();})
- .then(source=>{const image=source.match(/data:image\/png;base64,[A-Za-z0-9+/=]+/);if(image)document.body.style.setProperty('--site-background','url("'+image[0]+'")');})
- .catch(()=>{});
+
 </script>
 </body>
 </html>
