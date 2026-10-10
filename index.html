@@ -31,11 +31,23 @@ button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent
 .card h2{color:#ffd5e8;background:linear-gradient(100deg,rgba(226,137,179,.18),rgba(226,137,179,.055));border-left:3px solid #eab0cc;border-radius:3px 13px 13px 3px;padding:12px 15px;font-size:22px;font-weight:700;line-height:1.55;margin:18px 0 15px}
 @media(max-width:760px){.card h2{font-size:20px;padding:11px 13px}}
 @media(max-width:380px){.card h2{font-size:19px;padding:10px 12px}}
+
+/* Softer graphite and rose glass */
+body{background:#353239}
+body::before{background:radial-gradient(ellipse at 85% 0%,rgba(206,149,176,.22),transparent 48%),radial-gradient(ellipse at 0% 42%,rgba(174,159,180,.14),transparent 52%),linear-gradient(135deg,#47414a,#35343b 72%)}
+.hero{background:linear-gradient(125deg,rgba(255,255,255,.12),rgba(255,255,255,.055) 55%,rgba(229,170,197,.13));border-color:rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 45px rgba(20,16,23,.12)}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.115),rgba(255,255,255,.06));border-color:rgba(255,255,255,.19);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 22px rgba(25,20,30,.08)}
+.card pre{background:rgba(255,255,255,.045);color:#e1d5dd;border-color:rgba(255,255,255,.09)}
+.search{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.23);box-shadow:none}
+.search::placeholder{color:#d1c4ce}.platform-line{color:#c5b7c2}.hero-intro{color:#e3d7df}.hero-pill,.collection-label,.collection-meta,.collection-number small,.variable-note{color:#d4c6d0}
+.filter-btn,.category-toggle{background:rgba(255,255,255,.045);color:#e1d1dc;border-color:rgba(255,255,255,.18)}
+.filter-btn.active{background:rgba(234,183,203,.2);color:#ffe0ef;border-color:rgba(244,196,220,.65)}
+.result-count,.num{color:#d0bfcb}.badge{color:#ead4e2}.new-badge{color:#f4c5de}.site-credit,.site-credit a,.masthead a{color:#d2bfcd}
 </style>
 </head>
 <body>
 <div class="container">
-<header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true">P</span><span>IIKHAEDAz / LIBRARY</span></div><a href="#library">เลือกคำสั่ง ↗</a></header>
+<header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true">P</span><span>IIKHAEDAz / LIBRARY</span></div><a href="#library">เลือกคำสั่ง </a></header>
   
 
 <section class="hero">
@@ -108,7 +120,7 @@ button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent
   <footer class="site-credit">
     <div>cr. IIKHAEDAz</div>
     <a href="https://iikhaedaz.uwu.ai/" target="_blank" rel="noopener noreferrer">
-      ติดตามผู้จัดทำ ↗
+      ติดตามผู้จัดทำ 
     </a>
   </footer>
 
@@ -132,7 +144,7 @@ async function writeClipboard(text){
  try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return;}}catch(error){}
  const area=document.createElement("textarea");area.value=text;area.style.cssText="position:fixed;top:0;left:0;opacity:0";document.body.append(area);area.focus();area.select();let ok=false;try{ok=document.execCommand("copy");}finally{area.remove();}if(!ok)throw new Error("clipboard unavailable");
 }
-async function copyFeedback(button,text){const old=button.textContent;try{await writeClipboard(text);button.textContent="คัดลอกแล้ว ✓";button.classList.add("copied");}catch(error){button.textContent="คัดลอกไม่สำเร็จ ลองเลือกข้อความ";}setTimeout(()=>{button.textContent=old;button.classList.remove("copied");},1800);}
+async function copyFeedback(button,text){const old=button.textContent;try{await writeClipboard(text);button.textContent="คัดลอกแล้ว";button.classList.add("copied");}catch(error){button.textContent="คัดลอกไม่สำเร็จ ลองเลือกข้อความ";}setTimeout(()=>{button.textContent=old;button.classList.remove("copied");},1800);}
 async function copyText(button){await copyFeedback(button,button.closest(".card").querySelector("pre").textContent);}
 document.getElementById("copyAll").addEventListener("click",function(){const text=visibleCards().map(card=>card.querySelector("pre").textContent).join("\n\n");if(text)copyFeedback(this,text);});
 applyFilters();
