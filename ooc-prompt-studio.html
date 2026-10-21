@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOC Prompt Studio | โทนขาว-ดำ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+tailwind.config = {theme: {extend: {fontFamily: {sans: ['Prompt', 'sans-serif'], mono: ['JetBrains Mono', 'Prompt', 'monospace']}}}}
+</script>
+<style>
+body {background-color:#0d0d0d;background-image:radial-gradient(circle at 50% 0%,#262626 0%,#0d0d0d 75%);color:#fff;min-height:100vh;overflow-x:hidden}
+.mono-glass-frame {background:rgba(20,20,20,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px rgba(0,0,0,.8)}
+.mono-card {background:#141414;border:1px solid rgba(255,255,255,.1);transition:border-color .2s ease}
+.mono-card:hover {border-color:rgba(255,255,255,.25)}
+.mono-sub-box {background:#0a0a0a;border:1px solid rgba(255,255,255,.08)}
+.btn-white {background:#fff;color:#0a0a0a;border:1px solid #fff;transition:all .2s ease}
+.btn-white:hover {background:#e5e5e5}
+.btn-white:active {transform:translateY(1px)}
+.btn-dark {background:#242424;color:#fff;border:1px solid rgba(255,255,255,.15);transition:all .2s ease}
+.btn-dark:hover {background:#333;border-color:rgba(255,255,255,.3)}
+::-webkit-scrollbar {width:6px;height:6px}
+::-webkit-scrollbar-track {background:#121212}
+::-webkit-scrollbar-thumb {background:#383838;border-radius:9999px}
+::-webkit-scrollbar-thumb:hover {background:#525252}
+</style>
+</head>
+<body class="py-6 sm:py-12 px-4 sm:px-6 flex items-center justify-center selection:bg-white selection:text-black">
+<main class="w-full max-w-3xl mono-glass-frame rounded-[1.75rem] p-5 sm:p-8 space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/15 pb-5">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-white text-black flex items-center justify-center shrink-0 shadow-md"><i class="ph-fill ph-chat-centered-text text-xl"></i></div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-white/10 text-white border border-white/15"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>ROLEPLAY DIRECTION</span>
+<h1 class="text-lg sm:text-xl font-semibold text-white mt-1">OOC (ฉาก NC🔞) <span class="text-white/60 font-normal text-sm sm:text-base">| เรท 3 ระดับ</span></h1>
+</div>
+</div>
+<button onclick="copyAllPrompts()" class="btn-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 shrink-0 cursor-pointer"><i class="ph-bold ph-copy text-base"></i><span>คัดลอกทั้งหมด (3 ระดับ)</span></button>
+</div>
+<div class="bg-white/5 border border-white/15 rounded-xl px-4 py-3 flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white shrink-0"><i class="ph-duotone ph-sparkle text-lg"></i></div><p class="text-xs sm:text-sm text-white leading-relaxed">เพิ่มความแซ่บในฉาก NC <span class="font-semibold underline decoration-white/50 underline-offset-4">สามารถใส่ในหน้าแชทก่อนเริ่มเข้าบทได้เลยค่ะ</span></p></div>
+<div class="space-y-4">
+<div class="mono-card rounded-2xl p-4 sm:p-5 space-y-3">
+<div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2.5"><span class="px-2.5 py-1 rounded-lg bg-white text-black font-bold text-xs">ระดับ 1</span><h2 class="text-sm sm:text-base font-semibold text-white">รสละมุน / Romantic & Soft</h2></div><div class="flex items-center gap-2"><button onclick="selectText('promptLevel1')" class="text-xs text-white/70 hover:text-white underline underline-offset-2 px-2 py-1 cursor-pointer">คลุมดำ</button><button onclick="copyPromptText('promptLevel1', 'คัดลอกระดับ 1 (รสละมุน) แล้วจ้า!')" class="btn-white font-semibold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer"><i class="ph-bold ph-copy"></i><span>คัดลอก</span></button></div></div>
+<div class="mono-sub-box rounded-xl p-3.5"><textarea id="promptLevel1" rows="5" readonly class="w-full bg-transparent text-white font-mono text-xs sm:text-sm leading-relaxed focus:outline-none resize-none select-all">(OOC รสละมุน / Romantic & Soft:
+- โทน: เน้นความโรแมนติก ทะนุถนอม อ่อนโยน และเต็มไปด้วยความรัก
+- การบรรยาย: โฟกัสที่อารมณ์ความรู้สึก สายตา การจูบ และการสัมผัสที่ทำให้หัวใจเต้นแรง ใช้ภาษาที่สละสลวย งดงาม (สามารถใช้คำเปรียบเปรยเชิงกวีได้เล็กน้อยเพื่อความโรแมนติก) บรรยายฉากรักอย่างมีศิลปะ ไม่หยาบโลน
+- บทพูด: หวานซึ้ง บอกรัก ชื่นชม กระซิบข้างหูอย่างอ่อนโยน)</textarea></div>
+</div>
+<div class="mono-card rounded-2xl p-4 sm:p-5 space-y-3">
+<div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2.5"><span class="px-2.5 py-1 rounded-lg bg-white text-black font-bold text-xs">ระดับ 2</span><h2 class="text-sm sm:text-base font-semibold text-white">รสแซ่บนัว / Passionate & Explicit</h2></div><div class="flex items-center gap-2"><button onclick="selectText('promptLevel2')" class="text-xs text-white/70 hover:text-white underline underline-offset-2 px-2 py-1 cursor-pointer">คลุมดำ</button><button onclick="copyPromptText('promptLevel2', 'คัดลอกระดับ 2 (รสแซ่บนัว) แล้วจ้า!')" class="btn-white font-semibold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer"><i class="ph-bold ph-copy"></i><span>คัดลอก</span></button></div></div>
+<div class="mono-sub-box rounded-xl p-3.5"><textarea id="promptLevel2" rows="5" readonly class="w-full bg-transparent text-white font-mono text-xs sm:text-sm leading-relaxed focus:outline-none resize-none select-all">(OOC รสแซ่บนัว / Passionate & Explicit:
+- โทน: เร่าร้อน ชัดเจน 25+ สมจริง ไม่รวบรัด
+- การบรรยาย: โฟกัสสรีระ ร่างกาย อุณหภูมิ และการกระทำอย่างตรงไปตรงมา ห้ามใช้คำเปรียบเปรยแบบกลีบกุหลาบหรือถ้ำ ให้บรรยายการเสียดสีและเสียงตอบสนองทางกายอย่างสมจริง เห็นภาพชัดเจนแต่ไม่ถึงกับหยาบคาย
+- บทพูด: เร่าร้อน หอบกระเส่า มีหลุดคำสบถเบาๆ บ่งบอกถึงความต้องการที่ควบคุมไม่ได้)</textarea></div>
+</div>
+<div class="mono-card rounded-2xl p-4 sm:p-5 space-y-3">
+<div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2.5"><span class="px-2.5 py-1 rounded-lg bg-white text-black font-bold text-xs">ระดับ 3</span><h2 class="text-sm sm:text-base font-semibold text-white">รสดิบเถื่อน / Raw & Hardcore Smut</h2></div><div class="flex items-center gap-2"><button onclick="selectText('promptLevel3')" class="text-xs text-white/70 hover:text-white underline underline-offset-2 px-2 py-1 cursor-pointer">คลุมดำ</button><button onclick="copyPromptText('promptLevel3', 'คัดลอกระดับ 3 (รสดิบเถื่อน) แล้วจ้า!')" class="btn-white font-semibold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer"><i class="ph-bold ph-copy"></i><span>คัดลอก</span></button></div></div>
+<div class="mono-sub-box rounded-xl p-3.5"><textarea id="promptLevel3" rows="5" readonly class="w-full bg-transparent text-white font-mono text-xs sm:text-sm leading-relaxed focus:outline-none resize-none select-all">(OOC รสดิบเถื่อน / Raw & Hardcore Smut:
+- โทน: ดิบ เถื่อน ซาดิสม์เล็กๆ ปล่อยสัญชาตญาณสัตว์ป่า ไร้ฟิลเตอร์
+- การบรรยาย: เน้นความรุนแรง ความหิวโหย อธิบายทุกสัดส่วนและการกระทำแบบลึกซึ้งไร้การเซ็นเซอร์ โฟกัสเหงื่อ การกระชาก การบีบเค้น และความเสียวซ่านขั้นสุด
+- บทพูด: Dirty talk 100% หยาบคาย สกปรก ครางเสียงหลง บังคับให้อีกฝ่ายตอบสนอง ห้ามสุภาพเด็ดขาด)</textarea></div>
+</div>
+</div>
+</main>
+<div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none"><div class="bg-white text-black px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 border border-black/10"><div class="w-6 h-6 rounded-lg bg-black text-white flex items-center justify-center"><i class="ph-bold ph-check text-xs"></i></div><span id="toastMsg" class="text-xs sm:text-sm font-semibold">คัดลอกสำเร็จแล้วจ้า!</span></div></div>
+<script>
+function copyPromptText(elementId, message) {
+const textEl = document.getElementById(elementId);
+const temp = document.createElement('textarea');
+temp.value = textEl.value;
+temp.style.position = 'fixed';
+temp.style.left = '-9999px';
+document.body.appendChild(temp);
+temp.focus();
+temp.select();
+try {document.execCommand('copy');showToast(message);} catch (e) {showToast('กรุณากดค้างที่ข้อความเพื่อคัดลอกจ้า');}
+document.body.removeChild(temp);
+}
+function copyAllPrompts() {
+const p1 = document.getElementById('promptLevel1').value;
+const p2 = document.getElementById('promptLevel2').value;
+const p3 = document.getElementById('promptLevel3').value;
+const combined = `OOC (ฉาก NC🔞)\nเพิ่มความแซ่บในฉาก NC สามารถใส่ในหน้าแชทก่อนเริ่มเข้าบทได้เลยค่ะ\nเรท 3 ระดับ\n\n1. ${p1}\n\n2. ${p2}\n\n3. ${p3}`;
+const temp = document.createElement('textarea');
+temp.value = combined;
+temp.style.position = 'fixed';
+temp.style.left = '-9999px';
+document.body.appendChild(temp);
+temp.focus();
+temp.select();
+try {document.execCommand('copy');showToast('คัดลอกครบทั้ง 3 ระดับแล้วจ้า!');} catch (e) {showToast('กรุณากดค้างที่ข้อความเพื่อคัดลอกจ้า');}
+document.body.removeChild(temp);
+}
+function selectText(elementId) {const el = document.getElementById(elementId);el.focus();el.select();showToast('คลุมดำแล้ว กดคัดลอกได้เลยจ้า!');}
+let toastTimeout = null;
+function showToast(msg) {
+const toast = document.getElementById('toast');
+document.getElementById('toastMsg').textContent = msg;
+toast.classList.remove('translate-y-20', 'opacity-0');
+toast.classList.add('translate-y-0', 'opacity-100');
+if (toastTimeout) clearTimeout(toastTimeout);
+toastTimeout = setTimeout(() => {toast.classList.remove('translate-y-0', 'opacity-100');toast.classList.add('translate-y-20', 'opacity-0');}, 2500);
+}
+</script>
+</body>
+</html>
