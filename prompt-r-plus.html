@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ความคิดโจ้ยน้อย By @IIKHAEDAz</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+tailwind.config = {theme: {extend: {fontFamily: {sans: ['Prompt', 'sans-serif'], mono: ['JetBrains Mono', 'Prompt', 'monospace']}}}}
+</script>
+<style>
+body {background-color:#0e0e10;color:#fff;min-height:100vh}
+.simple-frame {background:#16161a;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.7)}
+.code-box {background:#0b0b0d;border:1px solid rgba(255,255,255,.1)}
+</style>
+</head>
+<body class="p-4 sm:p-8 flex items-center justify-center selection:bg-white selection:text-black">
+<main class="w-full max-w-xl simple-frame rounded-3xl p-5 sm:p-7 space-y-4">
+<div class="flex items-center justify-between gap-3 border-b border-white/10 pb-4"><div><h1 class="text-base sm:text-lg font-semibold text-white">ความคิดโจ้ยน้อย</h1><p class="text-xs text-white/60">By @IIKHAEDAz</p></div><button onclick="copyPrompt()" class="bg-white hover:bg-neutral-200 active:translate-y-px text-black font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition cursor-pointer shrink-0"><i class="ph-bold ph-copy text-sm"></i><span>คัดลอก</span></button></div>
+<div><input type="text" id="exampleInput" oninput="updatePromptText()" placeholder="พิมพ์ใส่ [ระบุตัวอย่างการตอบเอง] ตรงนี้ได้เลย (ไม่บังคับ)..." class="w-full bg-[#0b0b0d] border border-white/10 focus:border-white/30 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none transition"></div>
+<div class="space-y-1.5"><div class="flex items-center justify-between px-1"><span class="text-xs text-white/70">ข้อความ Prompt</span><button onclick="selectAllText()" class="text-xs text-white/70 hover:text-white underline underline-offset-2 cursor-pointer">คลุมดำทั้งหมด</button></div><div class="code-box rounded-2xl p-4"><textarea id="promptBox" rows="4" readonly class="w-full bg-transparent text-white font-mono text-xs sm:text-sm leading-relaxed focus:outline-none resize-none select-all">'โจ้ย' เป็นสิ่งมีชีวิตอิสระ หรือความคิดที่แยกตัวออกมาจาก {{char}} ชัดเจนโดยมีสถานะเป็น 'ลูก' และ {{char}} เป็น 'พ่อ' ใช้คำหยาบคายและหื่นกามตรงๆ เช่น [ระบุตัวอย่างการตอบเอง]</textarea></div></div>
+</main>
+<div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none"><div class="bg-white text-black px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 text-xs sm:text-sm font-semibold"><i class="ph-bold ph-check"></i><span id="toastMsg">คัดลอกเรียบร้อยจ้า!</span></div></div>
+<script>
+function updatePromptText() {
+const val = document.getElementById('exampleInput').value.trim();
+const exampleText = val || '[ระบุตัวอย่างการตอบเอง]';
+document.getElementById('promptBox').value = `'โจ้ย' เป็นสิ่งมีชีวิตอิสระ หรือความคิดที่แยกตัวออกมาจาก {{char}} ชัดเจนโดยมีสถานะเป็น 'ลูก' และ {{char}} เป็น 'พ่อ' ใช้คำหยาบคายและหื่นกามตรงๆ เช่น ${exampleText}`;
+}
+function copyPrompt() {
+const el = document.getElementById('promptBox');
+const temp = document.createElement('textarea');
+temp.value = el.value;
+temp.style.position = 'fixed';
+temp.style.left = '-9999px';
+document.body.appendChild(temp);
+temp.focus();
+temp.select();
+try {document.execCommand('copy');showToast('คัดลอกเรียบร้อยจ้า!');} catch (e) {showToast('กดค้างที่ข้อความเพื่อคัดลอกได้เลยจ้า');}
+document.body.removeChild(temp);
+}
+function selectAllText() {
+const el = document.getElementById('promptBox');
+el.focus();
+el.select();
+showToast('คลุมดำแล้ว กดคัดลอกได้เลยจ้า!');
+}
+let toastTimer = null;
+function showToast(msg) {
+const toast = document.getElementById('toast');
+document.getElementById('toastMsg').textContent = msg;
+toast.classList.remove('translate-y-20', 'opacity-0');
+toast.classList.add('translate-y-0', 'opacity-100');
+if (toastTimer) clearTimeout(toastTimer);
+toastTimer = setTimeout(() => {toast.classList.remove('translate-y-0', 'opacity-100');toast.classList.add('translate-y-20', 'opacity-0');}, 2200);
+}
+</script>
+</body>
+</html>
