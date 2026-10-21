@@ -1,0 +1,63 @@
+name: Deploy prompt studio pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Prepare website files
+        run: |
+          mkdir -p _site
+          cp antileak-prompt-studio.html _site/
+          cp ooc-prompt-studio.html _site/
+          cp prompt-r-plus.html _site/
+          cat > _site/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="th">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Prompt Studio by IIKHAEDAz</title>
+            <style>
+              body{margin:0;padding:32px;font-family:Arial,sans-serif;background:#111;color:#fff}
+              main{max-width:720px;margin:auto}
+              h1{font-size:1.6rem}
+              a{display:block;margin:14px 0;padding:16px;border:1px solid #444;border-radius:12px;color:#fff;text-decoration:none;background:#1b1b1f}
+              a:hover{background:#29292f}
+            </style>
+          </head>
+          <body><main>
+            <h1>Prompt Studio by IIKHAEDAz</h1>
+            <a href="antileak-prompt-studio.html">Anti-Leak Prompt Studio</a>
+            <a href="ooc-prompt-studio.html">OOC Prompt Studio — 3 ระดับ</a>
+            <a href="prompt-r-plus.html">ความคิดโจ้ยน้อย — Prompt R+</a>
+          </main></body>
+          </html>
+          EOF
+      - name: Upload website artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
